@@ -1,0 +1,10 @@
+# Client related folders
+/client/node_modules
+/client/bower_components
+/client/dist
+
+# Server related folders
+/server/node_modules
+
+# Development Environment Variables
+/server/.env
