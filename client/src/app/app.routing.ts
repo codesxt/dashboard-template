@@ -32,6 +32,10 @@ export const routes: Routes = [
         loadChildren: './section/section.module#SectionModule'
       },
       {
+        path: 'documents',
+        loadChildren: './documents/documents.module#DocumentsModule'
+      },
+      {
         path: 'settings',
         loadChildren: './settings/settings.module#SettingsModule'
       }
