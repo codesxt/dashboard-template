@@ -9,13 +9,16 @@ import { AdminUsersRoutingModule } from './admin-users-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     AdminUsersRoutingModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   declarations: [
     AdminUsersComponent,

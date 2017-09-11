@@ -10,6 +10,11 @@ import { UsersService } from '../shared/services/users.service';
 export class AdminUsersComponent implements OnInit {
   users: any = [];
   meta : any = [];
+
+  total    : number = 1;
+  page     : number = 1;
+  pageSize : number = 10;
+
   constructor(
     private notificationsService : NotificationsService,
     private authenticationService: AuthenticationService,
@@ -17,7 +22,11 @@ export class AdminUsersComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    this.usersService.getUsers(0, 1)
+    this.loadData();
+  }
+
+  loadData(){
+    this.usersService.getUsers(this.page-1, this.pageSize)
     .subscribe(
       data => {
         this.notificationsService.success(
@@ -26,6 +35,7 @@ export class AdminUsersComponent implements OnInit {
         )
         this.users = data.data;
         this.meta  = data.meta;
+        this.total = this.meta['total-items'];
       },
       error => {
         this.notificationsService.error(
@@ -34,5 +44,10 @@ export class AdminUsersComponent implements OnInit {
         )
       }
     );
+  }
+
+  onPageChange(event: Event){
+    console.log(event);
+    this.loadData();
   }
 }

@@ -31,6 +31,7 @@ import { UsersService } from './shared/services/users.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { SharedModule } from './shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    NgbModule.forRoot()
   ],
   declarations: [
     AppComponent,
