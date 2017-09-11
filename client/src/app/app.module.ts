@@ -26,8 +26,11 @@ import { RegisterComponent } from './register/register.component';
 // Services
 import { AuthenticationService } from './shared/services/authentication.service';
 import { ProfileService } from './shared/services/profile.service';
+import { UsersService } from './shared/services/users.service';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
+
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   imports: [
@@ -40,7 +43,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    SharedModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -54,7 +58,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
   ],
   providers: [
     AuthenticationService,
-    ProfileService, {
+    ProfileService,
+    UsersService, {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   }],

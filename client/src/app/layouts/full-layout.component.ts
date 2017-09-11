@@ -21,7 +21,7 @@ export class FullLayoutComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private _service: NotificationsService
+    private notificationsService: NotificationsService
   ){
 
   }
@@ -46,10 +46,14 @@ export class FullLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.authenticationService.isLoggedIn()){
-      alert("Debes acceder para poder usar la aplicación.");
+      this.notificationsService.alert("Error", "Debes acceder para poder usar la aplicación.");
       this.router.navigate(['/login']);
     }else{
       this.user = this.authenticationService.getCurrentUser();
     }
+  }
+
+  isAdmin(){
+    return this.user.role == "administrator";
   }
 }

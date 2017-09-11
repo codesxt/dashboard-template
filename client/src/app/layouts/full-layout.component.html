@@ -39,6 +39,12 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Panel de Control </a>
         </li>
+        <li class="nav-title" *ngIf="isAdmin()">
+          Administración
+        </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/users']"><i class="icon-people"></i> Usuarios</a>
+        </li>
         <li class="nav-title">
           Secciones
         </li>
@@ -49,6 +55,9 @@
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/sections/section1']"><i class="icon-star"></i> Sección 1</a>
             </li>
           </ul>
+        </li>
+        <li class="nav-title">
+          Opciones
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/settings']"><i class="icon-settings  "></i> Configuraciones </a>

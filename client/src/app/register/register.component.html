@@ -9,23 +9,59 @@
             <form [formGroup]="registerForm" (ngSubmit)="doRegister()" novalidate>
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" class="form-control" placeholder="Nombre" formControlName="name">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre"
+                  formControlName="name"
+                  [ngClass]="{
+                    'is-invalid': registerForm.controls['name'].errors && !registerForm.controls['name'].pristine,
+                    'is-valid'  : registerForm.controls['name'].valid
+                  }"
+                >
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-addon">@</span>
-                <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Email"
+                  formControlName="email"
+                  [ngClass]="{
+                    'is-invalid': registerForm.controls['email'].errors && !registerForm.controls['email'].pristine,
+                    'is-valid'  : registerForm.controls['email'].valid
+                  }"
+                >
               </div>
 
               <div formGroupName="passwords">
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Contraseña"
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid': registerForm.controls['passwords'].controls['password'].errors && !registerForm.controls['passwords'].controls['password'].pristine,
+                    'is-valid'  : registerForm.controls['passwords'].controls['password'].valid
+                  }"
+                >
               </div>
 
               <div class="input-group mb-4">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Repetir Contraseña" formControlName="repeat">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Repetir Contraseña"
+                  formControlName="repeat"
+                  [ngClass]="{
+                    'is-invalid': registerForm.controls['passwords'].errors && !registerForm.controls['passwords'].controls['repeat'].pristine,
+                    'is-valid'  : registerForm.controls['passwords'].valid
+                  }"
+                >
               </div>
               </div>
 

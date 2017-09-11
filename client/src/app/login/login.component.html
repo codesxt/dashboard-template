@@ -10,11 +10,28 @@
               <form [formGroup]="loginForm" (ngSubmit)="doLogin()" novalidate>
                 <div class="input-group mb-3">
                   <span class="input-group-addon">@</span>
-                  <input class="form-control" formControlName="email" placeholder="Email">
+                  <input
+                    class="form-control"
+                    formControlName="email"
+                    placeholder="Email"
+                    [ngClass]="{
+                      'is-invalid': loginForm.controls['email'].errors && !loginForm.controls['email'].pristine,
+                      'is-valid'  : loginForm.controls['email'].valid
+                    }"
+                  >
                 </div>
                 <div class="input-group mb-4">
                   <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                    placeholder="Contraseña"
+                    [ngClass]="{
+                      'is-invalid': loginForm.controls['password'].errors && !loginForm.controls['password'].pristine,
+                      'is-valid'  : loginForm.controls['password'].valid
+                    }"
+                  >
                 </div>
                 <div *ngIf="formError" class="alert alert-danger">
                   <p *ngIf="errorMessage">
