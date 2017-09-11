@@ -40,7 +40,7 @@ export class AdminUsersComponent implements OnInit {
       error => {
         this.notificationsService.error(
           'Error',
-          'Los datos de usuarios no se pudieron leer.'
+          'Los datos de usuarios no se pudieron leer.\n'+'Detalles: '+ error.json().message
         )
       }
     );
