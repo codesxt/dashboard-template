@@ -1,0 +1,24 @@
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th class="col-10">Título</th>
+      <th class="col-2">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let doc of documents">
+      <td>{{ doc.title }}</td>
+      <td>
+        <a type="button" class="btn btn-outline-warning btn-sm" href="#/documents/{{doc._id}}">Editar</a>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteDocument(doc._id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ngb-pagination
+  [collectionSize]="total"
+  [(page)]="page"
+  [pageSize]="pageSize"
+  (pageChange)="onPageChange($event)"
+  aria-label="Pagination">
+</ngb-pagination>

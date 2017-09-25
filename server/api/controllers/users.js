@@ -87,7 +87,6 @@ module.exports.updateUser = (req, res) => {
         });
         return;
       } else if (err) {
-        console.log("WHAT");
         utils.sendJSONresponse(res, 400, err);
         return;
       }

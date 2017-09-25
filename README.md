@@ -10,6 +10,7 @@ A basic dashboard implemented using the following technologies:
 The application consists in two main components that work together:
 1. Server
 2. Client
+
 MongoDB has to be installed for the application to run properly (Ideally version 3.4+).
 
 ### Prerequisites
@@ -34,6 +35,7 @@ JWT_SECRET=ThisIsASuperSecretKey
 
 ### Running
 To be written.
+
 The server serves the Angular client generated in /client/dist on port 3000.
 
 ### Built With

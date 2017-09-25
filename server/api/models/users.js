@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
-//TODO: agregar teléfono
 var userSchema = new mongoose.Schema({
   email: {
     type: String,

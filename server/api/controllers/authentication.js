@@ -68,3 +68,25 @@ module.exports.login = (req, res) => {
     }
   })(req, res);
 };
+
+exports.roleAuthorization = function(roles){
+  return function(req, res, next){
+    var user = req.user;
+    User.findById(user._id, function(err, foundUser){
+      if(err){
+        utils.sendJSONresponse(res, 404, {
+          message: 'Usuario no encontrado.'
+        });
+        return next(err);
+      }
+
+      if(roles.indexOf(foundUser.role) > -1){
+        return next();
+      }
+      utils.sendJSONresponse(res, 401, {
+        message: 'No tienes autorización para ver este contenido.'
+      });
+      return next('Unauthorized');
+    });
+  };
+}

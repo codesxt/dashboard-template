@@ -9,6 +9,9 @@ const auth = jwt({
 const ctrlAuthentication  = require('./controllers/authentication');
 const ctrlProfile         = require('./controllers/profile');
 const ctrlUsers           = require('./controllers/users');
+const ctrlDocuments       = require('./controllers/documents');
+
+const roleAuth            = ctrlAuthentication.roleAuthorization;
 
 // ========== Authentication Endpoints =============
 
@@ -25,8 +28,15 @@ router.patch('/profile', auth, ctrlProfile.updateProfile);
 // DELETE   /profile        Deletes user account
 
 // =============== User Management =================
-router.get('/users', auth, ctrlUsers.readUserList);
-router.get('/users/:userId', auth, ctrlUsers.readUser);
-router.patch('/users/:userId', auth, ctrlUsers.updateUser);
+router.get('/users', auth, roleAuth(['administrator']), ctrlUsers.readUserList);
+router.get('/users/:userId', auth, roleAuth(['administrator']), ctrlUsers.readUser);
+router.patch('/users/:userId', auth, roleAuth(['administrator']), ctrlUsers.updateUser);
+
+// ============= Document Endpoints ================
+router.get('/documents/:id', auth, ctrlDocuments.readDocument);
+router.patch('/documents/:id', auth, ctrlDocuments.updateDocument);
+router.delete('/documents/:id', auth, ctrlDocuments.deleteDocument);
+router.post('/documents', auth, ctrlDocuments.createDocument);
+router.get('/user-documents', auth, ctrlDocuments.readUserDocumentList);
 
 module.exports = router;

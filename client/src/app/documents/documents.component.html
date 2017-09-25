@@ -6,8 +6,17 @@
           <strong>Documentos</strong>
         </div>
         <div class="card-body">
-          <a href="#/documents/create">Crear Documento</a>
-          <router-outlet></router-outlet>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/documents/list']"><i class="icon-notebook"></i> Mis Documentos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/documents/create']"><i class="icon-note"></i> Nuevo Documento</a>
+            </li>
+          </ul>
+          <div class="p-2">
+            <router-outlet></router-outlet>
+          </div>
         </div>
       </div>
     </div>

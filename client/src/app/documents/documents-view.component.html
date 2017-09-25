@@ -4,6 +4,7 @@
       <label class="col-md-1 form-control-label" for="title-input">Título:</label>
       <div class="col-md-11">
         <input
+          *ngIf="documentBelongsToUser"
           class="form-control"
           formControlName="title"
           placeholder="Título del Documento"
@@ -12,20 +13,33 @@
             'is-valid'  : editorForm.controls['title'].valid
           }"
         >
+        <p
+          *ngIf="!documentBelongsToUser && document">
+          {{ document.title }}
+        </p>
       </div>
     </div>
     <quill-editor
       #editor
       [style]="{height: '250px'}"
       placeholder="Escriba su texto aquí..."
-      formControlName="editor">
+      formControlName="content"
+      [readOnly]="!documentBelongsToUser">
     </quill-editor>
   </form>
 </div>
 <button
+  *ngIf="documentBelongsToUser"
   type="submit"
   class="btn btn-sm btn-primary mt-1"
   (click)="saveDocument()"
   [disabled]="!editorForm.valid">
     <i class="fa fa-save"></i> Guardar Documento
+</button>
+<button
+  *ngIf="documentBelongsToUser"
+  type="submit"
+  class="btn btn-sm btn-warning mt-1"
+  (click)="cancel()">
+    <i class="fa fa-close"></i> Cancelar Modificaciones
 </button>
