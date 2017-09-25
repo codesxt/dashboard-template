@@ -32,6 +32,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
@@ -46,7 +47,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     HttpModule,
     SharedModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBsgEHm5tNoKD4_1tyrprZpyJgKymDkAs8'
+    })
   ],
   declarations: [
     AppComponent,

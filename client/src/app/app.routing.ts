@@ -36,6 +36,10 @@ export const routes: Routes = [
         loadChildren: './documents/documents.module#DocumentsModule'
       },
       {
+        path: 'map-view',
+        loadChildren: './map-view/map-view.module#MapViewModule'
+      },
+      {
         path: 'settings',
         loadChildren: './settings/settings.module#SettingsModule'
       }

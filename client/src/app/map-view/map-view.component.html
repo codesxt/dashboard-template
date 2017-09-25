@@ -1,0 +1,45 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Vista del Mapa</strong>
+        </div>
+        <div class="card-body">
+          <agm-map
+            [latitude]="lat"
+            [longitude]="lng"
+            [zoom]="zoom"
+            [zoomControl]="true"
+            [styles]="mapStyles"
+            (mapClick)="mapClicked($event)">
+            <agm-marker
+              *ngFor="let m of markers; let i = index"
+              [latitude]="m.lat"
+              [longitude]="m.lng"
+              [label]="m.label"
+              [markerDraggable]="m.draggable"
+              [iconUrl]="m.iconUrl"
+              (dragEnd)="markerDragEnd(m, $event)">
+              <agm-info-window>
+                <h6 class="text-center">{{ m.label }}</h6>
+                <button type="button" class="btn btn-danger" (click)="markerRemove(m)">
+                  <i class="fa fa-close"></i>
+                  Eliminar Marcador
+                </button>
+              </agm-info-window>
+            </agm-marker>
+            <agm-circle
+              [latitude]="lat"
+              [longitude]="lng"
+              [radius]="50000"
+              [fillColor]="'blue'"
+              [circleDraggable]="true"
+              [editable]="true">
+            </agm-circle>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
