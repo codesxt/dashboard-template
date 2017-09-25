@@ -3,10 +3,11 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as JWT from 'jwt-decode';
 import { AuthenticationService } from './authentication.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ProfileService {
-  baseURL: string = "http://localhost:3000";
+  baseURL: string = environment.apiUrl;
   constructor(
     private http: Http,
     private authenticationService: AuthenticationService
