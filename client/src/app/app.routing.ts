@@ -40,6 +40,10 @@ export const routes: Routes = [
         loadChildren: './map-view/map-view.module#MapViewModule'
       },
       {
+        path: 'map-admin',
+        loadChildren: './map-admin/map-admin.module#MapAdminModule'
+      },
+      {
         path: 'settings',
         loadChildren: './settings/settings.module#SettingsModule'
       }

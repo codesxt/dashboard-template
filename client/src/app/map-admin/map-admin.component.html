@@ -1,0 +1,84 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-header">
+          <strong>Administración del Mapa</strong>
+        </div>
+        <div class="card-body">
+          <agm-map
+            [latitude]="lat"
+            [longitude]="lng"
+            [zoom]="zoom"
+            [zoomControl]="true"
+            [styles]="mapStyles"
+            (mapClick)="mapClicked($event)">
+            <span *ngFor="let layer of markerSets">
+              <agm-marker
+                *ngFor="let m of layer.markers; let i = index"
+                [latitude]="m.lat"
+                [longitude]="m.lng"
+                [label]="m.label"
+                [markerDraggable]="m.draggable"
+                [iconUrl]="m.iconUrl"
+                (dragEnd)="markerDragEnd(m, $event)">
+                <agm-info-window>
+                  <h6 class="text-center">{{ m.label }}</h6>
+                  <button type="button" class="btn btn-danger" (click)="markerRemove(m)">
+                    <i class="fa fa-close"></i>
+                    Eliminar Marcador
+                  </button>
+                </agm-info-window>
+              </agm-marker>
+            </span>
+
+          </agm-map>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">
+          <strong>Datos del Mapa</strong>
+        </div>
+        <div class="card-body">
+          <table class="table table-sm table-bordered">
+            <tbody>
+              <tr>
+                <td>N° de Capas</td>
+                <td>{{markerSets.length}}</td>
+              </tr>
+              <tr *ngFor="let l of markerSets">
+                <td>En Capa {{l.name}}</td>
+                <td>{{l.markers.length}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <strong>Capas del Mapa</strong>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="mapForm" novalidate>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Añadir capa..." formControlName="newLayer">
+              <span class="input-group-btn">
+                <button class="btn btn-success" (click)="addNewLayer()">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </span>
+            </div>
+            <div class="form-check" *ngFor="let layer of markerSets; let i = index">
+              <label class="form-check-label">
+                <input class="form-check-input" formControlName="layer" type="radio" name="layer" id="layer" value="{{i}}">
+                {{layer.name}}
+              </label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
